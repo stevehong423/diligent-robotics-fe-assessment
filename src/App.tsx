@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { INITIAL_PRODUCT, ProductType } from "./fixtures/fixtures";
+import "./App.css";
+
+// Components
+import ProductMenu from "./components/ProductMenu/ProductMenu";
+import ProductDisplay from "./components/ProductDisplay/ProductDisplay";
 
 function App() {
+  const [selectedProduct, setSelectedProduct] =
+    useState<ProductType>(INITIAL_PRODUCT);
+  const [products, setProducts] = useState<ProductType[] | []>([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data.products));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-header">
+        <ProductMenu
+          products={products}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+        />
+        <ProductDisplay selectedProduct={selectedProduct} />
+      </div>
     </div>
   );
 }
