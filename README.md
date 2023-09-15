@@ -12,8 +12,8 @@ I noticed that the images returned from the API call often had multiple image so
 An alternative approach I have considered is using Material UI for styling. For this particular task, I chose to stick with just CSS, HTML, and React, but I do enjoy the component structure of Material UI as I find it compatible and intuitive with React.
 
 ### Run The Project: `yarn start`
-
-Runs the app.
+First, run `npm install` to install node_modules.
+Then run `yarn start` to run the app.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Run Tests: `yarn test`
